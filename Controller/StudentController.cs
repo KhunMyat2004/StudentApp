@@ -33,6 +33,17 @@ namespace StudentApp.Controller
             return Ok(student);
         }
 
+        [HttpGet]
+        public async Task<ActionResult> GetByName(string name)
+        {
+            var student = await _context.Students.Where(s => s.Name == name).FirstOrDefaultAsync();
+            if (student == null)
+            {
+                return NotFound();
+            }
+            return Ok(student);
+        }
+
         [HttpPost]
         public async Task<ActionResult> Create(Student student)
         {
