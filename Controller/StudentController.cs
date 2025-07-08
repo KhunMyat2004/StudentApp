@@ -15,7 +15,7 @@ namespace StudentApp.Controller
         {
             _context = context;
         }
-
+        //This is comment
         [HttpGet]
         public async Task<ActionResult> Get()
         {
@@ -30,6 +30,17 @@ namespace StudentApp.Controller
             if (student == null)
                 return NotFound();
 
+            return Ok(student);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> GetByName(string name)
+        {
+            var student = await _context.Students.Where(s => s.Name == name).FirstOrDefaultAsync();
+            if (student == null)
+            {
+                return NotFound();
+            }
             return Ok(student);
         }
 
