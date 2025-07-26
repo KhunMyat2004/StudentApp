@@ -4,10 +4,8 @@ using StudentApp.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseMySql(
-        builder.Configuration.GetConnectionString("DefaultConnection"),
-        new MySqlServerVersion(new Version(9, 3, 0)) // Replace with your actual MySQL version
-    ));
+    options.UseNpgsql("Host=ep-restless-leaf-a13de6yi-pooler.ap-southeast-1.aws.neon.tech;Port=5432;Database=neondb;Username=neondb_owner;Password=npg_Vtxm8gk6lJyc;SslMode=Require;Trust Server Certificate=true"));
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();

@@ -1,4 +1,4 @@
-namespace ParentApp.Model
+namespace StudentApp.Model
 {
     public class Parent
     {

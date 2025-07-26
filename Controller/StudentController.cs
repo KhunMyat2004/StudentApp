@@ -15,7 +15,7 @@ namespace StudentApp.Controller
         {
             _context = context;
         }
-        //This is comment
+        
         [HttpGet]
         public async Task<ActionResult> Get()
         {

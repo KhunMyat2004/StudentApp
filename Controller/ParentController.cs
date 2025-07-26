@@ -1,8 +1,15 @@
- [ApiController]
-[Route("api/[controller]")]
-public class ParentController : ControllerBase
+using Microsoft.AspNetCore.Mvc;
+using StudentApp.Data;
+using StudentApp.Model;
+using Microsoft.EntityFrameworkCore;
+
+namespace StudentApp.Controller
 {
-    private readonly AppDbContext _context;
+    [ApiController]
+    [Route("api/[controller]")]
+    public class ParentController : ControllerBase
+    {
+         private readonly AppDbContext _context;
 
     public ParentController(AppDbContext context)
     {
@@ -46,8 +53,7 @@ public class ParentController : ControllerBase
             return NotFound();
 
         parent.Name = updatedParent.Name;
-        parent.Phone = updatedParent.Phone;
-
+        
         await _context.SaveChangesAsync();
         return Ok(parent);
     }
@@ -63,5 +69,6 @@ public class ParentController : ControllerBase
         _context.Parents.Remove(parent);
         await _context.SaveChangesAsync();
         return Ok("Deleted Successfully");
+    }
     }
 }
