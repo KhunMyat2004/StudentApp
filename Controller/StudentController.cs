@@ -16,11 +16,22 @@ namespace StudentApp.Controller
             _context = context;
         }
         
-        [HttpGet]
+        [HttpGet("GetStudent")]
         public async Task<ActionResult> Get()
         {
             var students = await _context.Students.ToListAsync();
             return Ok(students);
+        }
+
+        [HttpGet("GetByParentId")]
+        public async Task<IActionResult> GetSByParentId(int id)
+        {
+            var student = await _context.Students.Where(s => s.ParentId == id).FirstOrDefaultAsync();
+            if (student == null)
+            {
+                return NotFound();
+            }
+            return Ok(student);
         }
 
         [HttpGet("{id}")]
@@ -33,7 +44,7 @@ namespace StudentApp.Controller
             return Ok(student);
         }
 
-        [HttpGet]
+        [HttpGet("GetByName")]
         public async Task<ActionResult> GetByName(string name)
         {
             var student = await _context.Students.Where(s => s.Name == name).FirstOrDefaultAsync();
