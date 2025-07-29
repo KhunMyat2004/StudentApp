@@ -43,6 +43,16 @@ namespace StudentApp.Controller
 
         return Ok(parent);
     }
+    [HttpGet("GetByName")]
+    public async Task<ActionResult> GetByName(string name)
+    {
+        var parent = await _context.Parents.Where(s => s.Name == name) . FirstOrDefaultAsync();
+        if (parent == null)
+        {
+            return NotFound();
+        }
+        return Ok(parent);
+    }
 
     
     [HttpPut("{id}")]
