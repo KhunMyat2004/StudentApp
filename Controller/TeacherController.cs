@@ -32,6 +32,16 @@ namespace TeacherApp.Controller
 
             return Ok(teacher);
         }
+        [HttpGet("GetByName")]
+        public async Task<ActionResult> GetByName(string name)
+        {
+            var teacher = await _context.Teachers.Where(s => s.Name == name).FirstOrDefaultAsync();
+            if (student == null)
+            {
+                return NotFound();
+            }
+            return Ok(teacher);
+        }
 
         [HttpPost]
         public async Task<ActionResult> Update(int id ,Teacher teacher)
