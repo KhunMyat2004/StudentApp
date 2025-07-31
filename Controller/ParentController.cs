@@ -9,7 +9,7 @@ namespace StudentApp.Controller
     [Route("api/[controller]")]
     public class ParentController : ControllerBase
     {
-         private readonly AppDbContext _context;
+    private readonly AppDbContext _context;
 
     public ParentController(AppDbContext context)
     {

@@ -13,9 +13,10 @@ namespace StudentApp.Data
             : base(options)
         {
         }
-        public DbSet<Student>Students { get; set; }
-        public DbSet<Teacher>Teachers {get;set;}
-        public DbSet<Parent>Parents {get; set;}
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Parent> Parents { get; set; }
+        public DbSet<Room> Rooms { get; set; }
     }
 
 }

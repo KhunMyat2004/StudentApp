@@ -15,7 +15,7 @@ namespace StudentApp.Controller
         {
             _context = context;
         }
-        
+
         [HttpGet("GetStudent")]
         public async Task<ActionResult> Get()
         {
@@ -86,6 +86,13 @@ namespace StudentApp.Controller
             await _context.SaveChangesAsync();
 
             return Ok("Deleted");
+        }
+
+        [HttpGet("GetStudentListByRoom")]
+        public async Task<ActionResult> GetStudentListByRoom(int id)
+        {
+            var students = await _context.Students.Where(s => s.RoomId == id).ToListAsync();
+            return Ok(students);
         }
     }
 }

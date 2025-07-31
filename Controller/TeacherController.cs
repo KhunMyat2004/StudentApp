@@ -1,13 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
-using TeacherApp.Data;
-using TeacherApp.Model;
+using StudentApp.Data;
+using StudentApp.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace TeacherApp.Controller
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class TeacherAppController : ControllerBase
+    public class TeacherController : ControllerBase
     {
         private readonly AppDbContext _context;
 
@@ -26,7 +26,7 @@ namespace TeacherApp.Controller
         [HttpGet("{id}")]
         public async Task<ActionResult>GetById(int id)
         {
-            var teacher = await _context.Students.FindAsync(id);
+            var teacher = await _context.Teachers.FindAsync(id);
             if (teacher == null)
             return NotFound();
 
@@ -36,7 +36,7 @@ namespace TeacherApp.Controller
         public async Task<ActionResult> GetByName(string name)
         {
             var teacher = await _context.Teachers.Where(s => s.Name == name).FirstOrDefaultAsync();
-            if (student == null)
+            if (teacher == null)
             {
                 return NotFound();
             }
@@ -61,10 +61,10 @@ namespace TeacherApp.Controller
         var teacher = await _context.Teachers.FindAsync(id);
         if (teacher == null)
         return NotFound();
-        _context.Students.Remove(teacher);
+        _context.Teachers.Remove(teacher);
         await _context.SaveChangesAsync();
 
-        retrun Ok("Deleted");
+        return Ok("Deleted");
     }
 }
 }

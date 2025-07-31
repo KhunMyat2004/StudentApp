@@ -5,11 +5,9 @@ using System.Threading.Tasks;
 
 namespace StudentApp.Model
 {
-    public class Student
+    public class Room
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        public int ParentId { get; set; }
-        public int RoomId { get; set; }
     }
 }
