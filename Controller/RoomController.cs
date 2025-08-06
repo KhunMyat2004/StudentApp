@@ -7,66 +7,66 @@ namespace StudentApp.Controller
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class StudentController : ControllerBase
+    public class RoomController : ControllerBase
     {
     private readonly AppDbContext _context;
 
-    public StudentController(AppDbContext context)
+    public RoomController(AppDbContext context)
     {
         _context = context;
     }
 
     
     [HttpPost]
-    public async Task<IActionResult> Create(Student student)
+    public async Task<IActionResult> Create(Room room)
     {
-        _context.Parents.Add(student);
+        _context.Rooms.Add(room);
         await _context.SaveChangesAsync();
-        return Ok(student);
+        return Ok(room);
     }
 
     
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        var students = await _context.students.ToListAsync();
-        return Ok(students);
+        var rooms = await _context.rooms.ToListAsync();
+        return Ok(rooms);
     }
 
     
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
     {
-        var students = await _context.Students.FindAsync(id);
-        if (student == null)
+        var rooms = await _context.Rooms.FindAsync(id);
+        if (room == null)
             return NotFound();
 
-        return Ok(student);
+        return Ok(room);
     }
     
     
     [HttpPut("{id}")]
-    public async Task<IActionResult> Update(int id, Student updatedStudent)
+    public async Task<IActionResult> Update(int id, Room updatedRooms)
     {
-        var parent = await _context.Parents.FindAsync(id);
-        if (id == student.Id)
+        var room = await _context.Rooms.FindAsync(id);
+        if (id == room.Id)
             return BadRequest();
 
-        _context.Entry(student).Statte = EntityState.Modified;
+        _context.Entry(room).Statte = EntityState.Modified;
         
         await _context.SaveChangesAsync();
-        return Ok(student);
+        return Ok(room);
     }
 
     
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-        var student = await _context.Students.FindAsync(id);
-        if (student == null)
+        var room = await _context.Rooms.FindAsync(id);
+        if (room == null)
             return NotFound();
 
-        _context.Students.Remove(parent);
+        _context.Rooms.Remove(room);
         await _context.SaveChangesAsync();
         return Ok("Deleted Successfully");
     }
