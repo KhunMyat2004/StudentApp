@@ -29,7 +29,7 @@ namespace StudentApp.Controller
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        var rooms = await _context.rooms.ToListAsync();
+        var rooms = await _context.Rooms.ToListAsync();
         return Ok(rooms);
     }
 
@@ -38,24 +38,25 @@ namespace StudentApp.Controller
     public async Task<IActionResult> GetById(int id)
     {
         var rooms = await _context.Rooms.FindAsync(id);
-        if (room == null)
+        if (rooms == null)
             return NotFound();
 
-        return Ok(room);
+        return Ok(rooms);
     }
     
     
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(int id, Room updatedRooms)
     {
-        if (id != updatedRoom.Id)
+        if (id != updatedRooms.Id)
          return BadRequest();
         var room = await _context.Rooms.FindAsync(id);
-        if (room = null)
-            return NotFound();
-            room.Name = updatedRoom.Name;
+        
+        if (room == null)
+                return NotFound();
+            room.Name = updatedRooms.Name;
 
-        _context.Entry(room).Statte = EntityState.Modified;
+        
         
         await _context.SaveChangesAsync();
         return Ok(room);
