@@ -48,9 +48,12 @@ namespace StudentApp.Controller
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(int id, Room updatedRooms)
     {
+        if (id != updatedRoom.Id)
+         return BadRequest();
         var room = await _context.Rooms.FindAsync(id);
-        if (id == room.Id)
-            return BadRequest();
+        if (room = null)
+            return NotFound();
+            room.Name = updatedRoom.Name;
 
         _context.Entry(room).Statte = EntityState.Modified;
         
