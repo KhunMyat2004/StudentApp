@@ -7,7 +7,8 @@ namespace StudentApp.Model
 {
     public class Teacher
     {
-        public int Id {get;set;}
+        public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
+        public int? RoomId { get; set; }
     }
 }
