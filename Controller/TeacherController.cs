@@ -43,6 +43,9 @@ namespace TeacherApp.Controller
             return Ok(teacher);
         }
 
+
+
+
         [HttpPost]
         public async Task<ActionResult> Update(int id, Teacher teacher)
         {
@@ -66,5 +69,40 @@ namespace TeacherApp.Controller
 
             return Ok("Deleted");
         }
+       
+        
+        [HttpGet("rooms-by-teacher")]
+        public async Task<ActionResult> GetRoomsByTeacherName([FromQuery] string teacherName)
+        {
+            var teacher = await _context.Teachers
+                .Include(t => t.RoomId)
+                .FirstOrDefaultAsync(t => t.Name == teacherName);
+
+            if (teacher == null)
+                return NotFound("Teacher not found.");
+
+            var rooms = teacher.Rooms.Select(r => r.RoomName).ToList();
+            return Ok(rooms);
+        }
+
+       
+
+
+  
+        [HttpGet("teacher-by-room")]
+        public async Task<ActionResult> GetTeacherByRoomName([FromQuery] string roomName)
+        {
+            var room = await _context.Rooms
+                .Include(r => r.TeacherId)
+                .FirstOrDefaultAsync(r => r.RoomName == roomName);
+
+            if (room == null)
+                return NotFound("Room not found.");
+
+            return Ok(room.Teacher.Name);
+        }
     }
 }
+        
+        
+ 

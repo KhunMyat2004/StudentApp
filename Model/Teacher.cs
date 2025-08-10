@@ -10,5 +10,8 @@ namespace StudentApp.Model
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public int? RoomId { get; set; }
+
+        public List <Room> Rooms { get; set; }
+
     }
 }
