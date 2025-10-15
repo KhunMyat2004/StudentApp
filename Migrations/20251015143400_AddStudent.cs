@@ -6,13 +6,13 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace StudentApp.Migrations
 {
     /// <inheritdoc />
-    public partial class AddRoom : Migration
+    public partial class AddStudent : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Rooms",
+                name: "Students",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -21,7 +21,7 @@ namespace StudentApp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Rooms", x => x.Id);
+                    table.PrimaryKey("PK_Students", x => x.Id);
                 });
         }
 
@@ -29,7 +29,7 @@ namespace StudentApp.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Rooms");
+                name: "Students");
         }
     }
 }
