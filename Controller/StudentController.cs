@@ -23,6 +23,12 @@ namespace StudentApp.Controllers
             _context.Students.Add(student);
             await _context.SaveChangesAsync();
             return Ok(student);
+
+
+
+
+
+            //test
         }
     }
 }

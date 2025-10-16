@@ -15,6 +15,10 @@ namespace StudentApp.Data
         }
         public DbSet<Student> Students { get; set; }
 
+
+
+
+
     }
 
 }
